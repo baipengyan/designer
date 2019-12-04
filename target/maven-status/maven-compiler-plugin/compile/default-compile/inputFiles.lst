@@ -1,0 +1,14 @@
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/config/AuthConfig.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/service/UserService.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/config/SwaggerConfig.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/DesignerApplication.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/common/Result.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/dao/UserDao.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/entity/User.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/controller/UserController.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/common/RedisService.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/SpringBootStartApplication.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/common/AuthInterceptor.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/common/AccessTokenUtil.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/common/ResultGenerator.java
+/Users/gao/Desktop/designer/designer/src/main/java/com/gao/designer/common/Constants.java
