@@ -3,10 +3,19 @@ package com.gao.designer.common;
 import java.io.Serializable;
 
 public class Result<T> implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private int resultCode;
-    private String message;
-    private T data;
+        private static final long serialVersionUID = 1L;
+        private int resultCode;
+        private String message;
+        private String token;
+        private T data;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Result() {
     }
@@ -50,6 +59,7 @@ public class Result<T> implements Serializable {
                 "resultCode=" + resultCode +
                 ", message='" + message + '\'' +
                 ", data=" + data +
+                ", token=" + token +
                 '}';
     }
 }

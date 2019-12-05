@@ -46,15 +46,10 @@ public class ResultGenerator {
         result.setResultCode(Constants.RESULT_CODE_SUCCESS);
         result.setMessage(message);
         result.setData(data);
+        result.setToken(token);
         return result;
     }
 
-    public static Result genSuccessResultToken(String message,String token) {
-        Result result = new Result();
-        result.setResultCode(Constants.RESULT_CODE_SUCCESS);
-        result.setMessage(message);
-        return result;
-    }
 
     public static Result genFailResult(String message) {
         Result result = new Result();

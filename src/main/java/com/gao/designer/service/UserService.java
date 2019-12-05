@@ -51,6 +51,8 @@ public class UserService {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("userId", userId);
         resultMap.put("userName", infoResult[0]);
+        resultMap.put("moible",infoResult[1]);
+        resultMap.put("avatar",infoResult[2]);
         String timeNew= String.valueOf(System.currentTimeMillis());
         System.out.println("时间"+timeNew);
         if (userId!=null&&infoResult[0]!=null){
@@ -72,7 +74,7 @@ public class UserService {
             }else{
                 String token = UUID.randomUUID().toString(); //生成token
                 redisService.set(token,infoResult[0],60*60); //存储token到redis里
-                result= ResultGenerator.genSuccessResultToken("用户已存在,直接登录成功！",token);
+                result= ResultGenerator.genSuccessResultToken(resultMap,"用户已存在,直接登录成功！",token);
                 System.out.println("历史登录成功打印token"+token);
             }
 
