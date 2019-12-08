@@ -1,5 +1,6 @@
 package com.gao.designer.dao;
 
+import com.gao.designer.entity.Role;
 import com.gao.designer.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -12,9 +13,9 @@ import java.util.List;
 public interface UserDao {
 
     /**
-     *获取所有用户
+            *获取所有用户
      * @return
-     */
+             */
     List<User> selectAll();
 
     /**
@@ -37,4 +38,12 @@ public interface UserDao {
      * @return
      */
     String selectByMoible(String moibble);
+
+    /**
+     * 根据用户名称进行查询
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
+
 }

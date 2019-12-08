@@ -12,10 +12,11 @@ import com.gao.designer.entity.User;
 import com.taobao.api.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserService {
@@ -46,36 +47,29 @@ public class UserService {
         String userId = response.getUserid();
         String[] infoResult = getUserInfo(accessToken,userId);
 
-        //返回结果给前端
         Result result= ResultGenerator.genFailResult(response.getErrmsg());
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("userId", userId);
-        resultMap.put("userName", infoResult[0]);
-        resultMap.put("moible",infoResult[1]);
-        resultMap.put("avatar",infoResult[2]);
+        assert infoResult != null;
+        Map<String, Object> resultMap = new HashMap<String,Object>(){{put("userId", "userId");put("userName", infoResult[0]);put("moible",infoResult[1]);put("avatar",infoResult[2]);}};
+        resultMap.put("roles",infoResult[3]);
         String timeNew= String.valueOf(System.currentTimeMillis());
-        System.out.println("时间"+timeNew);
+        Date date=new Date();
         if (userId!=null&&infoResult[0]!=null){
             String UserSel=userDao.selectByMoible(infoResult[1]);
             if (UserSel==null){
                 User user=new User();
-                user.setUsername(infoResult[0]);
-                user.setDingUserid(userId);
-                user.setMoible(infoResult[1]);
-                user.setAvatar(infoResult[2]);
-                user.setCreate_time(timeNew);
+                user.setAll(infoResult[0],userId,infoResult[1],infoResult[2],timeNew);
                 int newUser=userDao.addUser(user);
                 if (newUser>0) {
                     String token = UUID.randomUUID().toString(); //生成token
-                    redisService.set(token,infoResult[0],60*60); //存储token到redis里
+                    redisService.set(token,infoResult[0],1L, TimeUnit.DAYS); //存储token到redis里
                     result = ResultGenerator.genSuccessResultToken(resultMap,"第一次登录,存储完毕！登录成功！",token);
-                    System.out.println("第一次登录成功打印token"+token);
+                    System.out.println("时间："+date+"====="+infoResult[0]+"用户第一次登陆！，保存token："+token);
                 }
             }else{
                 String token = UUID.randomUUID().toString(); //生成token
-                redisService.set(token,infoResult[0],60*60); //存储token到redis里
+                redisService.set(token,infoResult[0],1L, TimeUnit.DAYS); //存储token到redis里
                 result= ResultGenerator.genSuccessResultToken(resultMap,"用户已存在,直接登录成功！",token);
-                System.out.println("历史登录成功打印token"+token);
+                System.out.println("时间："+date+"====="+infoResult[0]+"老用户登录！，保存token："+token);
             }
 
         }
@@ -106,7 +100,7 @@ public class UserService {
             request.setUserid(userId);
             request.setHttpMethod("GET");
             OapiUserGetResponse response = client.execute(request, accessToken);
-            String[] userInfo = {response.getName(),response.getMobile(),response.getAvatar()};
+            String[] userInfo = {response.getName(),response.getMobile(),response.getAvatar(), String.valueOf(response.getRoles())};
             return userInfo;
         } catch (ApiException e) {
             e.printStackTrace();

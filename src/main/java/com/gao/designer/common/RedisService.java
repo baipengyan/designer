@@ -14,7 +14,7 @@ public class RedisService {
     @Resource
     private RedisTemplate<String,Object> redisTemplate;
 
-    public void set(String key, Object value,int seconds) {
+    public void set(String key, Object value,long timeout,TimeUnit timeu) {
         //更改在redis里面查看key编码问题
         RedisSerializer redisSerializer =new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
@@ -22,7 +22,7 @@ public class RedisService {
         redisTemplate.setHashKeySerializer(redisSerializer);
         redisTemplate.setHashValueSerializer(redisSerializer);
         ValueOperations<String,Object> vo = redisTemplate.opsForValue();
-        vo.set(key, value,seconds);
+        vo.set(key, value,timeout,timeu);
     }
 
     public Object get(String key) {

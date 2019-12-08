@@ -8,6 +8,7 @@ com/gao/designer/common/AccessTokenUtil.class
 com/gao/designer/dao/UserDao.class
 com/gao/designer/DesignerApplication.class
 com/gao/designer/common/Result.class
+com/gao/designer/service/UserService$1.class
 com/gao/designer/config/AuthConfig.class
 com/gao/designer/entity/User.class
 com/gao/designer/controller/UserController.class

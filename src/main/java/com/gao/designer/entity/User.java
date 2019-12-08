@@ -1,22 +1,32 @@
 package com.gao.designer.entity;
 
-import java.sql.Timestamp;
+
+import java.util.List;
 
 public class User {
-    private int uid;
+    private int id;
     private String username;
-    private String    ding_userid;
+    private String dingUserid;
     private String moible;
     private String avatar;
-    private String create_time;
+    private String createTime;
     private int    lastloginTime;
+    private List<Role> roleList;
 
-    public int getUid() {
-        return uid;
+    public List<Role> getRoleList() {
+        return roleList;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -28,11 +38,11 @@ public class User {
     }
 
     public String getDingUserid() {
-        return ding_userid;
+        return dingUserid;
     }
 
     public void setDingUserid(String dingUserid) {
-        this.ding_userid = dingUserid;
+        this.dingUserid = dingUserid;
     }
 
     public String getMoible() {
@@ -51,12 +61,12 @@ public class User {
         this.avatar = avatar;
     }
 
-    public String getCreate_time() {
-        return create_time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(String create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public int getLastloginTime() {
@@ -66,4 +76,14 @@ public class User {
     public void setLastloginTime(int lastloginTime) {
         this.lastloginTime = lastloginTime;
     }
+
+    public void setAll(String username, String ding_userid, String moible, String avatar, String create_time){
+        this.username=username;
+        this.dingUserid=ding_userid;
+        this.moible=moible;
+        this.avatar=avatar;
+        this.createTime=create_time;
+    }
+
+
 }
